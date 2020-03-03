@@ -1,0 +1,46 @@
+@page "/speakers/add"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+
+<h1>Add Speaker</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if(speaker != null)
+{
+  <EditForm Model="@speaker" OnValidSubmit="@HandleAdd">
+  <DataAnnotationsValidator />
+  <ValidationSummary />
+
+  <InputText placeholder="First Name" id="firstName" @bind-Value="@speaker.firstName" />
+  <br />
+  <InputText placeholder="Last Name" id="lastName" @bind-Value="@speaker.lastName" />
+  <br />
+  <InputText placeholder="Email" id="email" @bind-Value="@speaker.email" />
+  <br />
+  <InputText placeholder="Mobile Number" id="mobileNumber" @bind-Value="@speaker.mobileNumber" />
+  <br />
+  <InputText placeholder="Area of specialization" id="areaOfSpecialization" @bind-Value="@speaker.areaOfSpecialization" />
+  <br />
+  <InputText placeholder="City of residence" id="cityOfResidence" @bind-Value="@speaker.cityOfResidence" />
+  <br />
+  <InputText placeholder="Province of residence" id="provinceOfResidence" @bind-Value="@speaker.provinceOfResidence" />
+  <br />
+  <InputText placeholder="Employer" id="employer" @bind-Value="@speaker.employer" />
+  <br />
+  <button type="submit">Submit</button>
+</EditForm>
+}
+@code {
+  string baseUrl = "https://localhost:6001/";
+  private Speaker speaker = new Speaker();
+  private async void HandleAdd() {
+    System.Console.WriteLine("HandleAdd");
+
+    string endpoint = $"{baseUrl}api/speaker";
+    speaker.speakerId = Guid.NewGuid().ToString();
+    await Http.SendJsonAsync(HttpMethod.Post, endpoint, speaker);
+    NavigationManager.NavigateTo("speakers");
+  }
+}

@@ -1,0 +1,61 @@
+﻿@page "/speakers"
+@inject HttpClient Http
+
+<h1>Speakers</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (speakers == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <a href="speakers/add">
+        <button  class="btn btn-success">Add Speaker</button>
+    </a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in speakers)
+            {
+                <tr>
+                    <td>@s.firstName @s.lastName</td>
+                    <td>
+                        <a href="speakers/view/@s.speakerId">
+                            <button  class="btn btn-outline-primary btn-sm">View</button>
+                        </a>
+                        <a href="speakers/update/@s.speakerId">
+                            <button  class="btn btn-outline-primary btn-sm">Update</button>
+                        </a>
+                        <a href="speakers/delete/@s.speakerId">
+                            <button  class="btn btn-outline-primary btn-sm">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
+@code {
+
+    Speaker[] speakers;
+    string baseUrl = "https://localhost:6001/";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await load();
+    }
+
+    protected async Task load(){
+        speakers = await Http.GetJsonAsync<Speaker[]>($"{baseUrl}api/speaker");
+    }
+}

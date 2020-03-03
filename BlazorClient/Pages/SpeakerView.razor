@@ -1,0 +1,35 @@
+@page "/speakers/view/{id}"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h1>Speaker Detail</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if(speaker != null)
+{
+  <p>First Name: @speaker.firstName</p>
+  <p>Last Name: @speaker.lastName</p>
+  <p>Email: @speaker.email</p>
+  <p>Mobile Number: @speaker.mobileNumber</p><br/>
+  <p>Area of specialization: @speaker.areaOfSpecialization</p>
+  <p>City of residence: @speaker.cityOfResidence</p>
+  <p>Province of residence: @speaker.provinceOfResidence</p>
+  <p>Employer: @speaker.employer</p><br/>
+  <a href="speakers">
+    <button  class="btn btn-primary">Back</button>
+  </a>
+}
+@code {
+  string baseUrl = "https://localhost:6001/";
+
+  [Parameter]
+  public string id {get;set;}
+  Speaker speaker ;
+
+  protected override async Task OnInitializedAsync()
+  {
+    System.Console.WriteLine("OnInitializedAsync");
+    speaker = await Http.GetJsonAsync<Speaker>($"{baseUrl}api/speaker/{id}");
+  }
+}
