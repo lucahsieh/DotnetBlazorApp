@@ -11,22 +11,29 @@
   <EditForm Model="@speaker" OnValidSubmit="@HandlePut">
   <DataAnnotationsValidator />
   <ValidationSummary />
-
-  <InputText placeholder="First Name" id="firstName" @bind-Value="@speaker.firstName" />
+<p>First Name</p>
+  <InputText placeholder="First Name" id="firstName" @bind-Value="@speaker.firstName" class="form-control" />
   <br />
-  <InputText placeholder="Last Name" id="lastName" @bind-Value="@speaker.lastName" />
+  <p>Last Name</p>
+  <InputText placeholder="Last Name" id="lastName" @bind-Value="@speaker.lastName" class="form-control" />
   <br />
-  <InputText placeholder="Email" id="email" @bind-Value="@speaker.email" />
+  <p>Email</p>
+  <InputText placeholder="Email" id="email" @bind-Value="@speaker.email" class="form-control" />
   <br />
-  <InputText placeholder="Mobile Number" id="mobileNumber" @bind-Value="@speaker.mobileNumber" />
+  <p>Mobile Number</p>
+  <InputText placeholder="Mobile Number" id="mobileNumber" @bind-Value="@speaker.mobileNumber" class="form-control" />
   <br />
-  <InputText placeholder="Area of specialization" id="areaOfSpecialization" @bind-Value="@speaker.areaOfSpecialization" />
+  <p>Area of specialization</p>
+  <InputText placeholder="Area of specialization" id="areaOfSpecialization" @bind-Value="@speaker.areaOfSpecialization" class="form-control" />
   <br />
-  <InputText placeholder="City of residence" id="cityOfResidence" @bind-Value="@speaker.cityOfResidence" />
+  <p>City of residence</p>
+  <InputText placeholder="City of residence" id="cityOfResidence" @bind-Value="@speaker.cityOfResidence" class="form-control" />
   <br />
-  <InputText placeholder="Province of residence" id="provinceOfResidence" @bind-Value="@speaker.provinceOfResidence" />
+  <p>Province of residence</p>
+  <InputText placeholder="Province of residence" id="provinceOfResidence" @bind-Value="@speaker.provinceOfResidence" class="form-control" />
   <br />
-  <InputText placeholder="Employer" id="employer" @bind-Value="@speaker.employer" />
+  <p>Employer</p>
+  <InputText placeholder="Employer" id="employer" @bind-Value="@speaker.employer" class="form-control" />
   <br />
   <a href="speakers">
     <button  class="btn btn-secondary">Cancel</button>
