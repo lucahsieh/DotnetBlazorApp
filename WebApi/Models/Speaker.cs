@@ -10,6 +10,7 @@ namespace WebApi.Models
         [Required]
         public string lastName { get; set; }
         [Required]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string email { get; set; }
         [Required]
         public string mobileNumber { get; set; }
