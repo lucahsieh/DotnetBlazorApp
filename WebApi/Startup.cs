@@ -29,35 +29,47 @@ namespace WebApi
         {
             services.AddControllers();
 
-            services.AddDbContext<SpeakerDbContext>(
-                option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            var ctr_connection = $"Server=db;Database=Speakers;User=sa;Password=SqlExpress!;";
+            // var ctr_connection = @"Server=db;Database=Speakers;User=sa;Password=SqlExpress!;";
 
-            // Add Cors
+            services.AddDbContext<SpeakerDbContext>(
+            option => option.UseSqlServer(
+                // use this for localhost
+                // Configuration.GetConnectionString("DefaultConnection")
+
+                // use this for container
+                ctr_connection
+                ));
+
             services.AddCors(o => o.AddPolicy("Policy", builder =>
             {
                 builder.AllowAnyOrigin()
                   .AllowAnyMethod()
                   .AllowAnyHeader();
             }));
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SpeakerDbContext context)
         {
+
+            context.Database.Migrate();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            // comment out for building Docker
+            // uncomment for localhost
+
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
             app.UseCors("Policy");
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,0 +1,19 @@
+version: "3"
+services:
+    db:
+        image: "mcr.microsoft.com/mssql/server:2017-CU8-ubuntu"
+        environment:
+            SA_PASSWORD: "SqlExpress!"
+            ACCEPT_EULA: "Y"
+    client:
+        build: ./BlazorClient
+        ports:
+            - "8888:80"
+        depends_on:
+            - api
+    api:
+        build: ./WebApi
+        ports:
+            - "6001:5000"
+        depends_on:
+            - db

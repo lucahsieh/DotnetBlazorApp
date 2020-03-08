@@ -41,14 +41,15 @@
 </EditForm>
 }
 @code {
-  string baseUrl = "https://localhost:6001/";
-  private Speaker speaker = new Speaker();
-  private async void HandleAdd() {
-    System.Console.WriteLine("HandleAdd");
+  string baseUrl = "http://localhost:6001/";
+      private Speaker speaker = new Speaker();
+      private async void HandleAdd()
+      {
+          System.Console.WriteLine("HandleAdd");
 
-    string endpoint = $"{baseUrl}api/speaker";
-    speaker.speakerId = Guid.NewGuid().ToString();
-    await Http.SendJsonAsync(HttpMethod.Post, endpoint, speaker);
-    NavigationManager.NavigateTo("speakers");
-  }
+          string endpoint = $"{baseUrl}api/speaker";
+          speaker.speakerId = Guid.NewGuid().ToString();
+          await Http.SendJsonAsync(HttpMethod.Post, endpoint, speaker);
+          NavigationManager.NavigateTo("speakers");
+      }
 }

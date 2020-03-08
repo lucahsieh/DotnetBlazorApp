@@ -46,16 +46,16 @@ else
 
 
 @code {
-
     Speaker[] speakers;
-    string baseUrl = "https://localhost:6001/";
+    string baseUrl = "http://localhost:6001/";
 
     protected override async Task OnInitializedAsync()
     {
         await load();
     }
 
-    protected async Task load(){
+    protected async Task load()
+    {
         speakers = await Http.GetJsonAsync<Speaker[]>($"{baseUrl}api/speaker");
     }
 }

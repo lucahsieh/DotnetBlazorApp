@@ -27,23 +27,24 @@
 </EditForm>
 }
 @code {
-  string baseUrl = "https://localhost:6001/";
+  string baseUrl = "http://localhost:6001/";
 
-  [Parameter]
-  public string id {get;set;}
-  Speaker speaker ;
+      [Parameter]
+      public string id { get; set; }
+      Speaker speaker;
 
-  protected override async Task OnInitializedAsync()
-  {
-    System.Console.WriteLine("OnInitializedAsync");
+      protected override async Task OnInitializedAsync()
+      {
+          System.Console.WriteLine("OnInitializedAsync");
 
-    speaker = await Http.GetJsonAsync<Speaker>($"{baseUrl}api/speaker/{id}");
-  }
-    private async void HandleDelete() {
-    System.Console.WriteLine("HandleDelete");
+          speaker = await Http.GetJsonAsync<Speaker>($"{baseUrl}api/speaker/{id}");
+      }
+      private async void HandleDelete()
+      {
+          System.Console.WriteLine("HandleDelete");
 
-    string endpoint = $"{baseUrl}api/Speaker/{speaker.speakerId}";
-    await Http.SendJsonAsync(HttpMethod.Delete, endpoint, null);
-    NavigationManager.NavigateTo("speakers");
-  }
+          string endpoint = $"{baseUrl}api/Speaker/{speaker.speakerId}";
+          await Http.SendJsonAsync(HttpMethod.Delete, endpoint, null);
+          NavigationManager.NavigateTo("speakers");
+      }
 }
