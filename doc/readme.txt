@@ -1,5 +1,5 @@
 ## Teams:
---. Rivest, Giguere Louis   A   lprivest@gmail.com
+--. Rivest, Giguere Louis   A01040609   lprivest@gmail.com
 --. Hsieh, Chungju (Luca)   A01018666   chungju.hsieh.ca@gmail.com
 
 ## Competion
