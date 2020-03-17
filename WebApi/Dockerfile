@@ -6,7 +6,7 @@ ENV ASPNETCORE_URLS=http://*:5000
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
 COPY *.csproj ./
-RUN dotnet restore WebApi.csproj
+#RUN dotnet restore WebApi.csproj
 COPY . .
 WORKDIR /src/.
 RUN dotnet build WebApi.csproj -c Release -o /app/build
